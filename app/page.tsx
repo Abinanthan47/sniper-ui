@@ -119,7 +119,7 @@ export default function HomePage() {
               <Link href="/docs/components">Components</Link>
             </Button>
             <Button variant="ghost" size="icon" className="h-9 w-9" asChild>
-              <Link href="https://github.com" target="_blank">
+              <Link href="https://github.com/Abinanthan47/sniper-ui" target="_blank">
                 <Github className="h-4 w-4" />
               </Link>
             </Button>
@@ -202,7 +202,7 @@ export default function HomePage() {
               </Link>
             </Button>
             <Button size="lg" variant="outline" className="gap-2" asChild>
-              <Link href="https://github.com" target="_blank">
+              <Link href="https://github.com/Abinanthan47/sniper-ui" target="_blank">
                 <Github className="h-4 w-4" />
                 GitHub
               </Link>
@@ -379,7 +379,7 @@ export default function HomePage() {
                 </Link>
               </Button>
               <Button size="lg" variant="outline" className="gap-2" asChild>
-                <Link href="https://github.com" target="_blank">
+                <Link href="https://github.com/Abinanthan47/sniper-ui" target="_blank">
                   <Github className="h-4 w-4" />
                   Star on GitHub
                 </Link>

@@ -116,19 +116,19 @@ const data = {
   projects: [
     {
       name: "GitHub",
-      url: "https://github.com",
+      url: "https://github.com/Abinanthan47/sniper-ui",
       icon: Github,
     },
-    {
-      name: "Documentation",
-      url: "/docs",
-      icon: BookOpen,
-    },
-    {
-      name: "Showcase",
-      url: "#",
-      icon: ExternalLink,
-    },
+    // {
+    //   name: "Documentation",
+    //   url: "/docs",
+    //   icon: BookOpen,
+    // },
+    // {
+    //   name: "Showcase",
+    //   url: "#",
+    //   icon: ExternalLink,
+    // },
   ],
 };
 

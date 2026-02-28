@@ -34,3 +34,93 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+```
+sniper-ui
+├─ app
+│  ├─ docs
+│  │  ├─ components
+│  │  │  ├─ page.tsx
+│  │  │  └─ [slug]
+│  │  │     ├─ component-doc.tsx
+│  │  │     └─ page.tsx
+│  │  ├─ layout.tsx
+│  │  └─ page.tsx
+│  ├─ favicon.ico
+│  ├─ globals.css
+│  ├─ layout.tsx
+│  └─ page.tsx
+├─ components
+│  ├─ app-sidebar.tsx
+│  ├─ docs
+│  │  ├─ ComponentPreview.tsx
+│  │  ├─ DocsRightSidebar.tsx
+│  │  ├─ HeaderSearch.tsx
+│  │  └─ ThemeToggle.tsx
+│  ├─ nav-main.tsx
+│  ├─ nav-projects.tsx
+│  ├─ nav-user.tsx
+│  ├─ providers
+│  │  └─ ThemeProvider.tsx
+│  ├─ team-switcher.tsx
+│  └─ ui
+│     ├─ avatar.tsx
+│     ├─ badge.tsx
+│     ├─ breadcrumb.tsx
+│     ├─ button.tsx
+│     ├─ card.tsx
+│     ├─ code-block.tsx
+│     ├─ collapsible.tsx
+│     ├─ dropdown-menu.tsx
+│     ├─ image-zoom.tsx
+│     ├─ input.tsx
+│     ├─ scroll-area.tsx
+│     ├─ separator.tsx
+│     ├─ sheet.tsx
+│     ├─ sidebar.tsx
+│     ├─ skeleton.tsx
+│     ├─ tabs.tsx
+│     └─ tooltip.tsx
+├─ components.json
+├─ CONTRIBUTING.md
+├─ eslint.config.mjs
+├─ hooks
+│  └─ use-mobile.ts
+├─ lib
+│  ├─ component-demos.tsx
+│  ├─ file-reader.ts
+│  ├─ registry.ts
+│  └─ utils.ts
+├─ mdx-components.tsx
+├─ next.config.ts
+├─ package-lock.json
+├─ package.json
+├─ postcss.config.mjs
+├─ public
+│  ├─ file.svg
+│  ├─ globe.svg
+│  ├─ loggoo.png
+│  ├─ logo.png
+│  ├─ logo.webp
+│  ├─ next.svg
+│  ├─ r
+│  │  ├─ glow-card.json
+│  │  ├─ lightning-text.json
+│  │  ├─ magnetic-button.json
+│  │  ├─ registry.json
+│  │  ├─ text-reveal.json
+│  │  └─ wave-text.json
+│  ├─ vercel.svg
+│  └─ window.svg
+├─ README.md
+├─ registry
+│  └─ components
+│     ├─ glow-card.tsx
+│     ├─ lightning-text.tsx
+│     ├─ magnetic-button.tsx
+│     ├─ text-reveal.tsx
+│     └─ wave-text.tsx
+├─ registry.json
+└─ tsconfig.json
+
+```
