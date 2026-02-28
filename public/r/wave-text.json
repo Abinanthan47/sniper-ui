@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "wave-text",
+  "title": "Wave Text",
+  "description": "Text with center Wave effect animation.",
+  "dependencies": [
+    "gsap"
+  ],
+  "files": [
+    {
+      "path": "registry/components/wave-text.tsx",
+      "content": "\"use client\";\n\nimport React, { useEffect, useRef, ReactNode } from \"react\";\nimport gsap from \"gsap\";\nimport { SplitText } from \"gsap/SplitText\";\n\ngsap.registerPlugin(SplitText);\n\ninterface WaveTextProps {\n  children: ReactNode;\n  color?: string;\n  repeatDelay?: number;\n  stagger?: number;\n}\n\nexport default function WaveText({\n  children,\n  color = \"#2b6bbb\",\n  repeatDelay = 3,\n  stagger = 0.06,\n}: WaveTextProps) {\n  const textRef = useRef<HTMLSpanElement | null>(null);\n\n  useEffect(() => {\n    const element = textRef.current;\n    if (!element) return;\n\n    const split = new SplitText(element, { type: \"chars\" });\n    const chars = split.chars as HTMLElement[]; \n    const midIndex = (chars.length - 1) / 2;\n\n    const tl = gsap.timeline({\n      repeat: -1,\n      repeatDelay: repeatDelay,\n    });\n\n    tl.call(() => {\n      element.classList.add(\"wave-blink\");\n      \n      chars.forEach((char, index) => {\n        const distanceToCenter = Math.abs(index - midIndex);\n        char.style.setProperty(\"--wave-color\", color);\n        char.style.animationDelay = `${distanceToCenter * stagger}s`;\n        char.classList.add(\"wave-char\");\n      });\n    });\n\n    tl.to({}, { duration: 2 });\n\n    tl.call(() => {\n      element.classList.remove(\"wave-blink\");\n      chars.forEach((char) => char.classList.remove(\"wave-char\"));\n    });\n\n    return () => {\n      tl.kill();\n      split.revert();\n    };\n  }, [color, repeatDelay, stagger]);\n\n  return (\n    <>\n      <style jsx global>{`\n        @keyframes wave-fade {\n          0%, 100% { color: inherit; opacity: 1; text-shadow: none; }\n          1% { color: var(--wave-color); opacity: 1; text-shadow: 0 0 8px var(--wave-color); }\n          15% { opacity: 0.2; }\n          40% { color: var(--wave-color); opacity: 1; }\n          70% { color: inherit; opacity: 0.5; }\n        }\n\n        @keyframes wave-blink {\n          0%, 100% { opacity: 1; }\n          25% { opacity: 0.4; }\n          50% { opacity: 0.8; }\n        }\n\n        .wave-char {\n          display: inline-block;\n          animation: wave-fade 0.5s ease-out forwards;\n        }\n\n        .wave-blink {\n          display: inline-block;\n          animation: wave-blink 0.6s ease-out;\n        }\n      `}</style>\n      <span ref={textRef} style={{ display: \"inline-block\" }}>\n        {children}\n      </span>\n    </>\n  );\n}",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

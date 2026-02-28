@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "lightning-text",
+  "title": "Lightning Text",
+  "description": "Text with Lightning effect animation.",
+  "dependencies": [
+    "gsap"
+  ],
+  "files": [
+    {
+      "path": "registry/components/lightning-text.tsx",
+      "content": "\"use client\";\n\nimport gsap from \"gsap\";\nimport { SplitText } from \"gsap/SplitText\";\nimport { ReactNode, useEffect, useRef } from \"react\";\n\ngsap.registerPlugin(SplitText);\n\ninterface LightningTextProps {\n  children: ReactNode;\n  color?: string;\n  repeatDelay?: number;\n  stagger?: number;\n}\n\nexport function LightningText({\n  children,\n  color = \"#2b6bbb\",\n  repeatDelay = 1.5,\n  stagger = 0.04,\n}: LightningTextProps) {\n  const textRef = useRef<HTMLSpanElement>(null);\n\n  useEffect(() => {\n    if (!textRef.current) return;\n\n    const split = new SplitText(textRef.current, { type: \"chars\" });\n\n    const tl = gsap.timeline({\n      repeat: -1,\n      repeatDelay: repeatDelay,\n    });\n\n    tl.call(() => {\n      if (!textRef.current) return;\n      textRef.current.classList.add(\"lightning-blink\");\n      split.chars.forEach((el, index) => {\n        const char = el as HTMLElement;\n        char.style.setProperty(\"--lightning-color\", color);\n        char.style.animationDelay = `${index * stagger}s`;\n        char.classList.add(\"lightning-char\");\n      });\n    });\n\n    tl.to({}, { duration: 1.5 });\n\n    tl.call(() => {\n      if (!textRef.current) return;\n      textRef.current.classList.remove(\"lightning-blink\");\n      split.chars.forEach((el) =>\n        (el as HTMLElement).classList.remove(\"lightning-char\"),\n      );\n    });\n\n    return () => {\n      tl.kill();\n      split.revert();\n    };\n  }, [color, repeatDelay, stagger]);\n\n  return (\n    <>\n      <style jsx global>{`\n        @keyframes lightning-fade {\n          0%,\n          100% {\n            color: inherit;\n            opacity: 1;\n          }\n          1% {\n            color: var(--lightning-color);\n            opacity: 1;\n          }\n          15% {\n            opacity: 0.2;\n          }\n          30% {\n            opacity: 0.8;\n          }\n          40% {\n            color: var(--lightning-color);\n            opacity: 1;\n          }\n          55% {\n            opacity: 1;\n          }\n          70% {\n            color: inherit;\n            opacity: 0.5;\n          }\n          85% {\n            opacity: 1;\n          }\n        }\n\n        @keyframes lightning-blink {\n          0%,\n          70%,\n          100% {\n            opacity: 1;\n          }\n          20% {\n            opacity: 0.3;\n          }\n          35% {\n            opacity: 0.85;\n          }\n          55% {\n            opacity: 0.2;\n          }\n        }\n\n        .lightning-char {\n          display: inline-block;\n          animation: lightning-fade 0.4s ease-out forwards;\n        }\n\n        .lightning-blink {\n          display: inline-block;\n          animation: lightning-blink 0.6s ease-out;\n        }\n      `}</style>\n      <span ref={textRef} style={{ display: \"inline-block\" }}>\n        {children}\n      </span>\n    </>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

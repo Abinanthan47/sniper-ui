@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "text-reveal",
+  "title": "Text Reveal",
+  "description": "Text that reveals character-by-character on scroll.",
+  "dependencies": [
+    "framer-motion",
+    "clsx",
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "registry/components/text-reveal.tsx",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/utils\";\nimport { motion, useInView } from \"framer-motion\";\nimport { useEffect, useRef, useState } from \"react\";\n\ninterface TextRevealProps {\n  text: string;\n  className?: string;\n  delay?: number;\n}\n\nexport function TextReveal({ text, className, delay = 0 }: TextRevealProps) {\n  const ref = useRef<HTMLSpanElement>(null);\n  const isInView = useInView(ref, { once: true, margin: \"-100px\" });\n  const [hasAnimated, setHasAnimated] = useState(false);\n\n  useEffect(() => {\n    if (isInView && !hasAnimated) {\n      setHasAnimated(true);\n    }\n  }, [isInView, hasAnimated]);\n\n  const words = text.split(\" \");\n\n  return (\n    <span ref={ref} className={cn(\"inline-block\", className)}>\n      {words.map((word, wordIndex) => (\n        <span key={wordIndex} className=\"inline-block mr-[0.25em]\">\n          {word.split(\"\").map((char, charIndex) => {\n            const globalIndex =\n              words.slice(0, wordIndex).reduce((acc, w) => acc + w.length, 0) +\n              charIndex;\n\n            return (\n              <motion.span\n                key={charIndex}\n                className=\"inline-block\"\n                initial={{ opacity: 0, y: 20, filter: \"blur(8px)\" }}\n                animate={\n                  hasAnimated ? { opacity: 1, y: 0, filter: \"blur(0px)\" } : {}\n                }\n                transition={{\n                  duration: 0.4,\n                  delay: delay + globalIndex * 0.03,\n                  ease: [0.215, 0.61, 0.355, 1],\n                }}\n              >\n                {char}\n              </motion.span>\n            );\n          })}\n        </span>\n      ))}\n    </span>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

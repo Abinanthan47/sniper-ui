@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "glow-card",
+  "title": "Glow Card",
+  "description": "A card with an animated glow border effect on hover.",
+  "dependencies": [
+    "framer-motion",
+    "clsx",
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "registry/components/glow-card.tsx",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/utils\";\nimport { motion } from \"framer-motion\";\nimport { useRef, useState } from \"react\";\n\ninterface GlowCardProps {\n  children: React.ReactNode;\n  className?: string;\n  wrapperClassName?: string;\n}\n\nexport function GlowCard({ children, className, wrapperClassName }: GlowCardProps) {\n  const cardRef = useRef<HTMLDivElement>(null);\n  const [glowPosition, setGlowPosition] = useState({ x: 50, y: 50 });\n  const [isHovered, setIsHovered] = useState(false);\n\n  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {\n    if (!cardRef.current) return;\n    const rect = cardRef.current.getBoundingClientRect();\n    const x = ((e.clientX - rect.left) / rect.width) * 100;\n    const y = ((e.clientY - rect.top) / rect.height) * 100;\n    setGlowPosition({ x, y });\n  };\n\n  return (\n    <motion.div\n      ref={cardRef}\n      onMouseMove={handleMouseMove}\n      onMouseEnter={() => setIsHovered(true)}\n      onMouseLeave={() => setIsHovered(false)}\n      className={cn(\"relative rounded-2xl p-[1px] overflow-hidden\", wrapperClassName)}\n      style={{\n        background: isHovered\n          ? `radial-gradient(600px circle at ${glowPosition.x}% ${glowPosition.y}%, rgba(59,130,246,0.4), transparent 40%)`\n          : \"transparent\",\n      }}\n    >\n      {/* Animated border glow */}\n      <motion.div\n        className=\"absolute inset-0 rounded-2xl opacity-0\"\n        animate={{ opacity: isHovered ? 1 : 0 }}\n        transition={{ duration: 0.3 }}\n        style={{\n          background: `radial-gradient(400px circle at ${glowPosition.x}% ${glowPosition.y}%, rgba(59,130,246,0.15), transparent 40%)`,\n        }}\n      />\n\n      {/* Card content */}\n      <div className={cn(\"relative rounded-2xl bg-card p-6 h-full border border-border/50\", className)}>\n        {children}\n      </div>\n    </motion.div>\n  );\n}",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

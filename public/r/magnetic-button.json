@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "magnetic-button",
+  "title": "Magnetic Button",
+  "description": "A button that magnetically follows the cursor on hover.",
+  "dependencies": [
+    "framer-motion",
+    "clsx",
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "registry/components/magnetic-button.tsx",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/utils\";\nimport { motion } from \"framer-motion\";\nimport { useRef, useState } from \"react\";\n\ninterface MagneticButtonProps {\n  children: React.ReactNode;\n  className?: string;\n  strength?: number;\n}\n\nexport function MagneticButton({\n  children,\n  className,\n  strength = 40,\n}: MagneticButtonProps) {\n  const ref = useRef<HTMLButtonElement>(null);\n  const [position, setPosition] = useState({ x: 0, y: 0 });\n\n  const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {\n    const { clientX, clientY } = e;\n    const { left, top, width, height } = ref.current!.getBoundingClientRect();\n    const middleX = clientX - (left + width / 2);\n    const middleY = clientY - (top + height / 2);\n    setPosition({\n      x: middleX * (strength / 100),\n      y: middleY * (strength / 100),\n    });\n  };\n\n  const handleMouseLeave = () => {\n    setPosition({ x: 0, y: 0 });\n  };\n\n  return (\n    <motion.button\n      ref={ref}\n      onMouseMove={handleMouseMove}\n      onMouseLeave={handleMouseLeave}\n      animate={{ x: position.x, y: position.y }}\n      transition={{ type: \"spring\", stiffness: 150, damping: 15, mass: 0.1 }}\n      className={cn(\n        \"relative px-8 py-3 text-sm font-semibold rounded-xl bg-primary text-primary-foreground\",\n        \"hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] transition-shadow duration-300\",\n        \"cursor-pointer\",\n        className,\n      )}\n    >\n      {children}\n    </motion.button>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}
