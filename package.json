@@ -5,10 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "registry:build": "shadcn@latest  build" ,
     "start": "next start",
     "lint": "eslint",
-    "registry:build": "shadcn build"
+    "registry:build": "shadcn@latest build"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

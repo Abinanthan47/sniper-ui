@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "sniperui",
-  "homepage": "https://sniper-ui.vercel.app",
+"homepage": "https://sniper-ui-coral.vercel.app",
+"name": "sniperui",
   "items": [
     {
       "name": "magnetic-button",
