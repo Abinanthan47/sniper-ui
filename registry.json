@@ -1,70 +1,70 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-"homepage": "https://sniper-ui-coral.vercel.app",
-"name": "sniperui",
+  "homepage": "https://sniper-ui-coral.vercel.app",
+  "name": "sniperui",
   "items": [
     {
       "name": "magnetic-button",
-      "type": "registry:block",
+      "type": "registry:ui",
       "title": "Magnetic Button",
       "description": "A button that magnetically follows the cursor on hover.",
       "dependencies": ["framer-motion", "clsx", "tailwind-merge"],
       "files": [
         {
           "path": "registry/components/magnetic-button.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "glow-card",
-      "type": "registry:block",
+      "type": "registry:ui",
       "title": "Glow Card",
       "description": "A card with an animated glow border effect on hover.",
       "dependencies": ["framer-motion", "clsx", "tailwind-merge"],
       "files": [
         {
           "path": "registry/components/glow-card.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "text-reveal",
-      "type": "registry:block",
+      "type": "registry:ui",
       "title": "Text Reveal",
       "description": "Text that reveals character-by-character on scroll.",
       "dependencies": ["framer-motion", "clsx", "tailwind-merge"],
       "files": [
         {
           "path": "registry/components/text-reveal.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "lightning-text",
-      "type": "registry:block",
+      "type": "registry:ui",
       "title": "Lightning Text",
       "description": "Text with Lightning effect animation.",
       "dependencies": ["gsap"],
       "files": [
         {
           "path": "registry/components/lightning-text.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "wave-text",
-      "type": "registry:block",
+      "type": "registry:ui",
       "title": "Wave Text",
       "description": "Text with center Wave effect animation.",
       "dependencies": ["gsap"],
       "files": [
         {
           "path": "registry/components/wave-text.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     }

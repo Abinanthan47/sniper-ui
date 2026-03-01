@@ -105,9 +105,9 @@ export default function HomePage() {
       <nav className="fixed inset-x-0 top-0 z-50 border-b border-border/40 bg-background/60 backdrop-blur-2xl">
         <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
           <Link href="/" className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-md  text-background">
+            <div className="flex h-12 w-12 items-center justify-center rounded-md  text-background">
       <ImageZoom>
-                       <Image src={'/logo.webp'} alt="logo" width={1000} height={1000}/>
+                       <Image src={'/loggoo.png'} alt="logo" width={1000} height={1000} className="w-12 h-12"/>
                    </ImageZoom>
             </div>
             <span className="text-sm font-semibold tracking-tight">

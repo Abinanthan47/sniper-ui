@@ -4,6 +4,7 @@ import { ComponentPreview } from "@/components/docs/ComponentPreview";
 import { Badge } from "@/components/ui/badge";
 import { CodeBlock } from "@/components/ui/code-block";
 import { Separator } from "@/components/ui/separator";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { componentDemos, type PropDef } from "@/lib/component-demos";
 import type { ComponentRegistryItem } from "@/lib/registry";
 
@@ -114,24 +115,63 @@ export function ComponentDoc({ component, sourceCode }: ComponentDocProps) {
       <div className="space-y-6">
         <h2 className="text-xl font-semibold tracking-tight">Installation</h2>
 
-        {installCmd && (
-          <div className="space-y-3">
-            <h3 className="text-base font-medium">Install Dependencies</h3>
-            <CodeBlock code={installCmd} language="bash" filename="Terminal" />
-          </div>
-        )}
+        <Tabs defaultValue="cli" className="w-full">
+          <TabsList className="mb-4">
+            <TabsTrigger value="cli">CLI</TabsTrigger>
+            <TabsTrigger value="manual">Manual</TabsTrigger>
+          </TabsList>
 
-        <div className="space-y-3">
-          <h3 className="text-base font-medium">Copy the Component</h3>
-          <p className="text-sm text-muted-foreground">
-            Copy the component code from the{" "}
-            <strong className="text-foreground">Code</strong> tab above and
-            paste it into your project at{" "}
-            <code className="rounded bg-secondary px-1.5 py-0.5 text-xs font-mono font-medium">
-              components/ui/{component.slug}.tsx
-            </code>
-          </p>
-        </div>
+          <TabsContent value="cli" className="space-y-6">
+            <div className="space-y-3">
+              <CodeBlock
+                code={`npx shadcn@latest add "https://sniper-ui-coral.vercel.app/r/${component.slug}.json"`}
+                language="bash"
+                filename="Terminal"
+              />
+            </div>
+
+            {installCmd && (
+              <div className="space-y-3">
+                <h3 className="text-base font-medium">
+                  Auto-Installed Dependencies
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  The CLI will automatically install these packages.
+                </p>
+                <CodeBlock
+                  code={installCmd}
+                  language="bash"
+                  filename="Terminal"
+                />
+              </div>
+            )}
+          </TabsContent>
+
+          <TabsContent value="manual" className="space-y-6">
+            {installCmd && (
+              <div className="space-y-3">
+                <h3 className="text-base font-medium">Install Dependencies</h3>
+                <CodeBlock
+                  code={installCmd}
+                  language="bash"
+                  filename="Terminal"
+                />
+              </div>
+            )}
+
+            <div className="space-y-3">
+              <h3 className="text-base font-medium">Copy the Component</h3>
+              <p className="text-sm text-muted-foreground">
+                Copy the component code from the{" "}
+                <strong className="text-foreground">Code</strong> tab above and
+                paste it into your project at{" "}
+                <code className="rounded bg-secondary px-1.5 py-0.5 text-xs font-mono font-medium">
+                  components/ui/{component.slug}.tsx
+                </code>
+              </p>
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
 
       <Separator />

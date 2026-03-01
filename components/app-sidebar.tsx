@@ -71,47 +71,47 @@ const data = {
           title: "Installation",
           url: "/docs",
         },
-        {
-          title: "Changelog",
-          url: "/docs",
-        },
+        // {
+        //   title: "Changelog",
+        //   url: "/docs",
+        // },
       ],
     },
     ...componentCategoryNavItems, // ← auto-generated categories from registry
-    {
-      title: "Templates",
-      url: "#",
-      icon: Package,
-      items: [
-        {
-          title: "SaaS Dashboard",
-          url: "#",
-        },
-        {
-          title: "Portfolio",
-          url: "#",
-        },
-        {
-          title: "Landing Page",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Playground",
-      url: "#",
-      icon: SquareTerminal,
-      items: [
-        {
-          title: "Editor",
-          url: "#",
-        },
-        {
-          title: "Sandbox",
-          url: "#",
-        },
-      ],
-    },
+    // {
+    //   title: "Templates",
+    //   url: "#",
+    //   icon: Package,
+    //   items: [
+    //     {
+    //       title: "SaaS Dashboard",
+    //       url: "#",
+    //     },
+    //     {
+    //       title: "Portfolio",
+    //       url: "#",
+    //     },
+    //     {
+    //       title: "Landing Page",
+    //       url: "#",
+    //     },
+    //   ],
+    // },
+    // {
+    //   title: "Playground",
+    //   url: "#",
+    //   icon: SquareTerminal,
+    //   items: [
+    //     {
+    //       title: "Editor",
+    //       url: "#",
+    //     },
+    //     {
+    //       title: "Sandbox",
+    //       url: "#",
+    //     },
+    //   ],
+    // },
   ],
   projects: [
     {
